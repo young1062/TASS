@@ -19,16 +19,40 @@ git clone git@github.com:young1062/TASS.git
 
 ## Basic Demo
 
+The full TASS-HMM algorithm is implemented in the function CSG_MCMC_IS and may be called in MATLAB as follows:
+
 ```matlab
-CSG_MCMC_IS(time_series, weights, mb_size, emit_param_init, trans_param_init, sgmcmc_param_full, eps_full, emit_prior, trans_prior_uninfo)
+[trans_chain_alex_clus_uninfo, emit_chain_alex_clus_uninfo, A_hat_chain_clu, A_chain_clu, runtime_clu, runtimes_clu] = CSG_MCMC_IS(time_series, weights, mb_size, emit_param_init, trans_param_init, sgmcmc_param_full, eps_full, emit_prior, trans_prior_uninfo)
 ```
+
+#### Inputs 
+| Variable | Explanation |
+|--------|-------------|
+| time_series | |
+| weights | |
+| mb_size | |
+| emit_param_init | |
+| trans_param_init | |
+| sgmcmc_param_full | |
+| eps_full |  |
+| emit_prior | |
+| trans_prior_uninfo | |
+
+#### Outputs
+
+| Variable | Explanation |
+| trans_chain |  |
+| emit_chain |   |
+| Ahat_chain |   |
+| Achain_clu |   |
+|runtime_clu | runtimes_clu |
 
 ## Data
 
 ## Sample results from paper
 
-## Having issues
-If you have any troubles please file the issue in the GitHub repository.
+## Having issues?
+If you have any troubles please file the issue through the repository page on github.com.
 
 
 
