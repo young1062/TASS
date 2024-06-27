@@ -2,7 +2,7 @@
 
 This is a repository containing a MATLAB implementation of the TASS-SGLD algorithm from
 > Rihui Ou, Deborshee Sen, Alexander L Young, David B Dunson
-Targeted stochastic gradient Markoc chain Monte Carlo for hidden Markov models with rare latent states 
+> Targeted stochastic gradient Markoc chain Monte Carlo for hidden Markov models with rare latent states 
 > arXiv:1810.13431
 
 ## Abstract
