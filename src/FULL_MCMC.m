@@ -1,5 +1,6 @@
-function [trans_chain, emit_chain, A_hat_chain, A_chain, runtime, runtimes] = CSG_MCMC_IS(y, weights, mb_size, emit_param, trans_param, sgmcmc_param, emit_prior, trans_prior)
+function [trans_chain, emit_chain, A_hat_chain, A_chain, runtime, runtimes] = FULL_MCMC(y, weights, mb_size, emit_param, trans_param, sgmcmc_param, trans_eps, emit_prior, trans_prior)
     sgmcmc_param_trans = sgmcmc_param;
+    sgmcmc_param_trans.eps = trans_eps;
     emit_chain = gaussian_emission_chain(sgmcmc_param.n_mcmc, emit_param.n_latent);
     trans_chain = transition_chain(sgmcmc_param.n_mcmc, emit_param.n_latent);
     trans_chain = trans_chain.save(trans_param, 0);
@@ -12,10 +13,10 @@ function [trans_chain, emit_chain, A_hat_chain, A_chain, runtime, runtimes] = CS
     for itr = 1:sgmcmc_param.n_mcmc
         clear minibatch trans_grad emit_grad;
 
-        trans_param = trans_param.eval_stoch_grad_IS(y, weights, mb_size, emit_param, sgmcmc_param_trans, trans_prior);
+        trans_param = trans_param.eval_grad_full(y, emit_param, sgmcmc_param, trans_prior);
         trans_param = trans_param.SGLD_update(sgmcmc_param_trans);
 
-        emit_param = emit_param.eval_stoch_grad_IS(y, weights, mb_size, trans_param, sgmcmc_param, emit_prior);
+        emit_param = emit_param.eval_full_grad(y, trans_param, sgmcmc_param, emit_prior);
         emit_param = emit_param.SGLD_update(sgmcmc_param);
 
         % Save parameters in each iteration
