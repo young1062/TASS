@@ -20,12 +20,9 @@ git clone git@github.com:young1062/TASS.git
 The full TASS-HMM algorithm is implemented in the function CSG_MCMC_IS and may be called in MATLAB as follows:
 
 ```matlab
-[trans_chain_alex_clus_uninfo, emit_chain_alex_clus_uninfo, ...
- A_hat_chain_clu, A_chain_clu, ...
- runtime_clu, runtimes_clu] = CSG_MCMC_IS(time_series, weights, mb_size, ...
+[trans_chain, emit_chain, A_hat_chain, A_chain, runtime, runtimes] = CSG_MCMC_IS(time_series, weights, mb_size, ...
                                           emit_param_init, trans_param_init, ... 
-					  sgmcmc_param_full, eps_full, ...
-				          emit_prior, trans_prior_uninfo);
+					  sgmcmc_param, emit_prior, trans_prior);
 ```
 
 At present only Gaussian emissions are supported.
@@ -38,10 +35,9 @@ At present only Gaussian emissions are supported.
 | mb_size | Size of the mini batch (1 by default) |
 | emit_param_init | Object of class gaussian_emission_parameter specifying the initial values of the emission distribution |
 | trans_param_init | Object of class random_transition_parameter specifying the initial value of the transition matrix |
-| sgmcmc_param_full | Object of class sgmcmc_parameter containing specifying the buffer size (B), sequence length (L), step size (eps), and number of steps (n_mcmc)|
-| eps_full | A alternative step size for the transition parameter updates |
+| sgmcmc_param | Object of class sgmcmc_parameter containing specifying the buffer size (B), sequence length (L), step size (eps), and number of steps (n_mcmc)|
 | emit_prior | Object of class Gaussian emission prior specifying prior on the Gaussian emissions |
-| trans_prior_uninfo | Object of class dirichlet prior specifying the prior(s) for the transition matrix|
+| trans_prior | Object of class dirichlet prior specifying the prior(s) for the transition matrix|
 
 #### Outputs
 
@@ -50,7 +46,7 @@ At present only Gaussian emissions are supported.
 | trans_chain | Posterior samples of hidden state |
 | emit_chain | Posterior samples of emission parameters  |
 | Ahat_chain | Posterior sample of transition matrix after normalization |
-| Achain_clu |  Posterior samples of Transition matrix prior to normalization|
+| A_chain |  Posterior samples of Transition matrix prior to normalization|
 | runtime |  Total runtime |
 | runtimes | Run time recorded at 10% of samples | 
 
