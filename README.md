@@ -45,7 +45,7 @@ At present only Gaussian emissions are supported.
 |--------|-------------|
 | trans_chain | Posterior samples of hidden state |
 | emit_chain | Posterior samples of emission parameters  |
-| Ahat_chain | Posterior sample of transition matrix after normalization |
+| A_hat_chain | Posterior sample of transition matrix after normalization |
 | A_chain |  Posterior samples of Transition matrix prior to normalization|
 | runtime |  Total runtime |
 | runtimes | Run time recorded at 10% of samples | 
